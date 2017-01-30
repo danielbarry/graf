@@ -61,10 +61,42 @@ public class GraphScatter implements Process{
 
   @Override
   public int getXY(int x, int y){
-    /* TODO: Remove this section. */
-    if(x >= 10 && x < 200 && y >= 10 && y < 20){
-      return Letter.getXY("HELLO WORLD!", x - 10, y - 10, 2) ? foreground : background;
+    if(titles != null){
+      /* Display the title */
+      if(y >= Letter.getHeight(' ') && y < (Letter.getHeight(' ') * 2)){
+        return Letter.getXY(
+          titles[0],
+          x - ((width / 2) - (Letter.getWidth(titles[0], 1) / 2)),
+          y - Letter.getHeight(' '),
+          1
+        ) ? foreground : background;
+      }
+      /* Display the X axis title */
+      if(y >= height - (Letter.getHeight(' ') * 2) && y < height - Letter.getHeight(' ')){
+        return Letter.getXY(
+          titles[1],
+          x - ((width / 2) - (Letter.getWidth(titles[1], 1) / 2)),
+          y - (height - (Letter.getHeight(' ') * 2)),
+          1
+        ) ? foreground : background;
+      }
+      /* Display the Y axis title */
+      if(x >= Letter.getHeight(' ') && x < (Letter.getHeight(' ') * 2)){
+        return Letter.getXY(
+          titles[2],
+          Letter.getHeight(' ') - (y - (height / 2) - (Letter.getWidth(titles[2], 1) / 2)),
+          x - Letter.getHeight(' '),
+          1
+        ) ? foreground : background;
+      }
     }
-    return background; // TODO: Remove me.
+    /* Display the borders */
+    if(y >= gBndTopY && y <= gBndBotY && (x == gBndTopX || x == gBndBotX)){
+      return foreground;
+    }
+    if(x >= gBndTopX && x <= gBndBotX && (y == gBndTopY || y == gBndBotY)){
+      return foreground;
+    }
+    return background;
   }
 }
