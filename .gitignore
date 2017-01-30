@@ -1,0 +1,10 @@
+# Ignore build files
+*.class
+*.jar
+*.swp
+
+# Ignore images
+*.bmp
+*.gif
+*.jpg
+*.png
