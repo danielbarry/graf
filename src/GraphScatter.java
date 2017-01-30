@@ -10,6 +10,7 @@ public class GraphScatter implements Process{
   private static final int foreground = (0x00 << 16) | (0x00 << 8) | 0x00;
 
   private String[][] data;
+  private int[][] pnts;
   private Maybe<Double>[] limits;
   private int width;
   private int height;
@@ -46,6 +47,7 @@ public class GraphScatter implements Process{
 
   @Override
   public void process(){
+    /* Calculate boundaries */
     if(titles != null){
       gBndTopX = Letter.getHeight(' ') * 6;
       gBndTopY = Letter.getHeight(' ') * 3;
@@ -56,6 +58,26 @@ public class GraphScatter implements Process{
       gBndTopY = Letter.getHeight(' ');
       gBndBotX = width - Letter.getHeight(' ');
       gBndBotY = height - (Letter.getHeight(' ') * 3);
+    }
+    /* Calculate point positions */
+    if(
+      limits[0].isSet() &&
+      limits[1].isSet() &&
+      limits[2].isSet() &&
+      limits[3].isSet()
+    ){
+      double xScl = (gBndBotX - gBndTopX) / (limits[1].get() - limits[0].get());
+      double yScl = (gBndBotY - gBndTopY) / (limits[3].get() - limits[2].get());
+      pnts = new int[2][];
+      pnts[0] = new int[data[0].length];
+      pnts[1] = new int[data[1].length];
+      for(int z = 0; z < data[0].length; z++){
+        pnts[0][z] = gBndTopX + (int)((Double.parseDouble(data[0][z]) - limits[0].get()) * xScl);
+        pnts[1][z] = gBndTopY + (int)((Double.parseDouble(data[1][z]) - limits[2].get()) * yScl);
+      }
+    }else{
+      /* TODO: Process String values. */
+      Main.error("String values not supported.");
     }
   }
 
