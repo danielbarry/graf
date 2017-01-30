@@ -13,6 +13,11 @@ public class GraphScatter implements Process{
   private Maybe<Double>[] limits;
   private int width;
   private int height;
+  private String[] titles;
+  private int gBndTopX;
+  private int gBndTopY;
+  private int gBndBotX;
+  private int gBndBotY;
 
   /**
    * GraphScatter()
@@ -36,11 +41,22 @@ public class GraphScatter implements Process{
     this.limits = limits;
     this.width = width;
     this.height = height;
+    this.titles = titles;
   }
 
   @Override
   public void process(){
-    /* TODO: Write this section. */
+    if(titles != null){
+      gBndTopX = Letter.getHeight(' ') * 6;
+      gBndTopY = Letter.getHeight(' ') * 3;
+      gBndBotX = width - Letter.getHeight(' ');
+      gBndBotY = height - (Letter.getHeight(' ') * 6);
+    }else{
+      gBndTopX = Letter.getHeight(' ') * 3;
+      gBndTopY = Letter.getHeight(' ');
+      gBndBotX = width - Letter.getHeight(' ');
+      gBndBotY = height - (Letter.getHeight(' ') * 3);
+    }
   }
 
   @Override
