@@ -119,6 +119,23 @@ public class GraphScatter implements Process{
     if(x >= gBndTopX && x <= gBndBotX && (y == gBndTopY || y == gBndBotY)){
       return foreground;
     }
+    /* Process the graph */
+    if((y > gBndTopY && y < gBndBotY) && (x > gBndTopX && x < gBndBotX)){
+      for(int z = 0; z < pnts[0].length; z++){
+        if(
+          (x == pnts[0][z] - 1 && y == pnts[1][z] - 1) ||
+          (x == pnts[0][z] + 0 && y == pnts[1][z] - 1) ||
+          (x == pnts[0][z] + 1 && y == pnts[1][z] - 1) ||
+          (x == pnts[0][z] - 1 && y == pnts[1][z] + 0) ||
+          (x == pnts[0][z] + 1 && y == pnts[1][z] + 0) ||
+          (x == pnts[0][z] - 1 && y == pnts[1][z] + 1) ||
+          (x == pnts[0][z] + 0 && y == pnts[1][z] + 1) ||
+          (x == pnts[0][z] + 1 && y == pnts[1][z] + 1)
+        ){
+          return foreground;
+        }
+      }
+    }
     return background;
   }
 }
