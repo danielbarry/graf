@@ -25,8 +25,8 @@ public class Letter{
   public static boolean getXY(char chr, int x, int y){
     byte[][] data = getLetter(chr);
     /* Find the position wanted */
-    if(y < data.length){
-      if(x < data[y].length){
+    if(y < data.length && y >= 0){
+      if(x < data[y].length && x >= 0){
         return data[y][x] > 0;
       }else{
         return false;
