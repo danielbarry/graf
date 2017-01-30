@@ -75,6 +75,7 @@ public class Graph{
    * desired format.
    **/
   public void generate(){
+    process.process();
     for(int y = 0; y < height; y++){
       for(int x = 0; x < width; x++){
         img.setRGB(x, y, process.getXY(x, y));
