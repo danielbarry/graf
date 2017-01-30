@@ -220,6 +220,7 @@ public class Main{
     for(int x = offset; x < args.length - 1; x++){
       if(args[x].charAt(0) == '-'){
         n = x;
+        break;
       }
     }
     /* Copy our parameter array */
@@ -247,6 +248,7 @@ public class Main{
     for(int x = offset; x < args.length - 1; x++){
       if(args[x].charAt(0) == '-'){
         n = x;
+        break;
       }
     }
     /* Copy our parameter array */
