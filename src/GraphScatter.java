@@ -113,6 +113,26 @@ public class GraphScatter implements Process{
           ) ? foreground : background;
         }
       }
+      /* Display the Y axis markers */
+      if(x >= (Letter.getHeight(' ') * 3) && x < (Letter.getHeight(' ') * 4)){
+        if(y < height / 2){
+          String val = Double.toString(limits[3].get());
+          return Letter.getXY(
+            val,
+            (Letter.getHeight(' ') - (y - gBndTopY)) + Letter.getHeight(' '),
+            x - (Letter.getHeight(' ') * 3),
+            1
+          ) ? foreground : background;
+        }else{
+          String val = Double.toString(limits[2].get());
+          return Letter.getXY(
+            val,
+            (Letter.getHeight(' ') - (y - gBndBotY)) + Letter.getHeight(' ') - Letter.getWidth(val, 1),
+            x - (Letter.getHeight(' ') * 3),
+            1
+          ) ? foreground : background;
+        }
+      }
       /* Display the X axis title */
       if(y >= height - (Letter.getHeight(' ') * 2) && y < height - Letter.getHeight(' ')){
         return Letter.getXY(
