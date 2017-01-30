@@ -93,6 +93,24 @@ public class GraphScatter implements Process{
           1
         ) ? foreground : background;
       }
+      /* Display the X axis markers */
+      if(y >= height - (Letter.getHeight(' ') * 4) && y < height - (Letter.getHeight(' ') * 2)){
+        if(x < width / 2){
+          return Letter.getXY(
+            Double.toString(limits[0].get()),
+            x - gBndTopX,
+            y - (height - (Letter.getHeight(' ') * 4)),
+            1
+          ) ? foreground : background;
+        }else{
+          return Letter.getXY(
+            Double.toString(limits[1].get()),
+            x - (gBndBotX - Letter.getWidth(Double.toString(limits[1].get()), 1)),
+            y - (height - (Letter.getHeight(' ') * 4)),
+            1
+          ) ? foreground : background;
+        }
+      }
       /* Display the X axis title */
       if(y >= height - (Letter.getHeight(' ') * 2) && y < height - Letter.getHeight(' ')){
         return Letter.getXY(
