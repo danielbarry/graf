@@ -155,11 +155,40 @@ public class Graph{
     boolean xIsNum,
     boolean yIsNum
   ){
-    return new Maybe[]{
-      new Maybe<Double>(),
-      new Maybe<Double>(),
-      new Maybe<Double>(),
-      new Maybe<Double>()
-    }; // TODO: Remove me.
+    if(xIsNum && yIsNum){
+      double xMin = Double.parseDouble(data[0][0]);
+      double xMax = Double.parseDouble(data[0][0]);
+      double yMin = Double.parseDouble(data[1][0]);
+      double yMax = Double.parseDouble(data[1][0]);
+      for(int x = 1; x < data[0].length; x++){
+        if(Double.parseDouble(data[0][x]) < xMin){
+          xMin = Double.parseDouble(data[0][x]);
+        }
+        if(Double.parseDouble(data[0][x]) > xMax){
+          xMax = Double.parseDouble(data[0][x]);
+        }
+      }
+      for(int y = 1; y < data[1].length; y++){
+        if(Double.parseDouble(data[1][y]) < yMin){
+          yMin = Double.parseDouble(data[1][y]);
+        }
+        if(Double.parseDouble(data[1][y]) > yMax){
+          yMax = Double.parseDouble(data[1][y]);
+        }
+      }
+      return new Maybe[]{
+        new Maybe<Double>(xMin),
+        new Maybe<Double>(xMax),
+        new Maybe<Double>(yMin),
+        new Maybe<Double>(yMax)
+      };
+    }else{
+      return new Maybe[]{
+        new Maybe<Double>(),
+        new Maybe<Double>(),
+        new Maybe<Double>(),
+        new Maybe<Double>()
+      };
+    }
   }
 }
