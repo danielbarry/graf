@@ -215,21 +215,8 @@ public class Main{
    **/
   private int xaxis(String[] args, int offset){
     offset++;
-    /* Search the number of parameters to be loaded */
-    int n = args.length - 1;
-    for(int x = offset; x < args.length - 1; x++){
-      if(args[x].charAt(0) == '-'){
-        n = x;
-        break;
-      }
-    }
-    /* Copy our parameter array */
-    xVals = new String[n - offset];
-    for(int x = offset; x < n; x++){
-      xVals[x - offset] = args[x];
-    }
-    /* Allow the arguments iterator to skip the searched items */
-    return n - offset;
+    xVals = args[offset].split(" ");
+    return 1;
   }
 
   /**
@@ -243,21 +230,8 @@ public class Main{
    **/
   private int yaxis(String[] args, int offset){
     offset++;
-    /* Search the number of parameters to be loaded */
-    int n = args.length - 1;
-    for(int x = offset; x < args.length - 1; x++){
-      if(args[x].charAt(0) == '-'){
-        n = x;
-        break;
-      }
-    }
-    /* Copy our parameter array */
-    yVals = new String[n - offset];
-    for(int x = offset; x < n; x++){
-      yVals[x - offset] = args[x];
-    }
-    /* Allow the arguments iterator to skip the searched items */
-    return n - offset;
+    yVals = args[offset].split(" ");
+    return 1;
   }
 
   /**
