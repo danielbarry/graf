@@ -72,8 +72,10 @@ public class GraphScatter implements Process{
       pnts[0] = new int[data[0].length];
       pnts[1] = new int[data[1].length];
       for(int z = 0; z < data[0].length; z++){
-        pnts[0][z] = gBndTopX + (int)((Double.parseDouble(data[0][z]) - limits[0].get()) * xScl);
-        pnts[1][z] = gBndTopY + (int)((Double.parseDouble(data[1][z]) - limits[2].get()) * yScl);
+        pnts[0][z] = gBndTopX + (int)((Double.parseDouble(data[0][z]) -
+          limits[0].get()) * xScl);
+        pnts[1][z] = gBndTopY + (int)((limits[3].get() -
+          (Double.parseDouble(data[1][z]) - limits[2].get())) * yScl);
       }
     }else{
       /* TODO: Process String values. */
