@@ -140,7 +140,7 @@ public class GraphScatter implements Process{
         String val = Double.toString(limits[3].get());
         return Letter.getXY(
           val,
-          (Letter.getHeight(' ') - (y - gBndTopY)) + Letter.getHeight(' '),
+          (Letter.getHeight(' ') - (y - gBndTopY)) - Letter.getHeight(' ') + Letter.getWidth(val, 1),
           x - (gBndTopX - (Letter.getHeight(' ') * 2)),
           1
         ) ? foreground : background;
