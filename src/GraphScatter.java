@@ -49,10 +49,10 @@ public class GraphScatter implements Process{
   public void process(){
     /* Calculate boundaries */
     if(titles != null){
-      gBndTopX = Letter.getHeight(' ') * 6;
+      gBndTopX = Letter.getHeight(' ') * 5;
       gBndTopY = Letter.getHeight(' ') * 3;
       gBndBotX = width - Letter.getHeight(' ');
-      gBndBotY = height - (Letter.getHeight(' ') * 6);
+      gBndBotY = height - (Letter.getHeight(' ') * 5);
     }else{
       gBndTopX = Letter.getHeight(' ') * 3;
       gBndTopY = Letter.getHeight(' ');
@@ -93,46 +93,6 @@ public class GraphScatter implements Process{
           1
         ) ? foreground : background;
       }
-      /* Display the X axis markers */
-      if(y >= height - (Letter.getHeight(' ') * 4) && y < height - (Letter.getHeight(' ') * 2)){
-        if(x < width / 2){
-          String val = Double.toString(limits[0].get());
-          return Letter.getXY(
-            val,
-            x - gBndTopX,
-            y - (height - (Letter.getHeight(' ') * 4)),
-            1
-          ) ? foreground : background;
-        }else{
-          String val = Double.toString(limits[1].get());
-          return Letter.getXY(
-            val,
-            x - (gBndBotX - Letter.getWidth(val, 1)),
-            y - (height - (Letter.getHeight(' ') * 4)),
-            1
-          ) ? foreground : background;
-        }
-      }
-      /* Display the Y axis markers */
-      if(x >= (Letter.getHeight(' ') * 3) && x < (Letter.getHeight(' ') * 4)){
-        if(y < height / 2){
-          String val = Double.toString(limits[3].get());
-          return Letter.getXY(
-            val,
-            (Letter.getHeight(' ') - (y - gBndTopY)) + Letter.getHeight(' '),
-            x - (Letter.getHeight(' ') * 3),
-            1
-          ) ? foreground : background;
-        }else{
-          String val = Double.toString(limits[2].get());
-          return Letter.getXY(
-            val,
-            (Letter.getHeight(' ') - (y - gBndBotY)) + Letter.getHeight(' ') - Letter.getWidth(val, 1),
-            x - (Letter.getHeight(' ') * 3),
-            1
-          ) ? foreground : background;
-        }
-      }
       /* Display the X axis title */
       if(y >= height - (Letter.getHeight(' ') * 2) && y < height - Letter.getHeight(' ')){
         return Letter.getXY(
@@ -148,6 +108,46 @@ public class GraphScatter implements Process{
           titles[2],
           Letter.getHeight(' ') - (y - (height / 2) - (Letter.getWidth(titles[2], 1) / 2)),
           x - Letter.getHeight(' '),
+          1
+        ) ? foreground : background;
+      }
+    }
+    /* Display the X axis markers */
+    if(y >= gBndBotY + Letter.getHeight(' ') && y < gBndBotY + (Letter.getHeight(' ') * 2)){
+      if(x < width / 2){
+        String val = Double.toString(limits[0].get());
+        return Letter.getXY(
+          val,
+          x - gBndTopX,
+          y - (gBndBotY + Letter.getHeight(' ')),
+          1
+        ) ? foreground : background;
+      }else{
+        String val = Double.toString(limits[1].get());
+        return Letter.getXY(
+          val,
+          x - (gBndBotX - Letter.getWidth(val, 1)),
+          y - (gBndBotY + Letter.getHeight(' ')),
+          1
+        ) ? foreground : background;
+      }
+    }
+    /* Display the Y axis markers */
+    if(x >= gBndTopX - (Letter.getHeight(' ') * 2) && x < gBndTopX - Letter.getHeight(' ')){
+      if(y < height / 2){
+        String val = Double.toString(limits[3].get());
+        return Letter.getXY(
+          val,
+          (Letter.getHeight(' ') - (y - gBndTopY)) + Letter.getHeight(' '),
+          x - (gBndTopX - (Letter.getHeight(' ') * 2)),
+          1
+        ) ? foreground : background;
+      }else{
+        String val = Double.toString(limits[2].get());
+        return Letter.getXY(
+          val,
+          (Letter.getHeight(' ') - (y - gBndBotY)) + Letter.getHeight(' ') - Letter.getWidth(val, 1),
+          x - (gBndTopX - (Letter.getHeight(' ') * 2)),
           1
         ) ? foreground : background;
       }
